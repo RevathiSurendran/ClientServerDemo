@@ -1,6 +1,6 @@
 import java.io.*;
 import java.net.*;
-public class MyClient {
+public class ClientDemo {
    public static void main(String args[]) {
       try {
          // create a new socket for communicating with the server

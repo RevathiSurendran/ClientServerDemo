@@ -1,6 +1,6 @@
 import java.io.*;
 import java.net.*;
-public class ServerDemo {
+public class MyServer {
    public static void main(String args[]) {
       try {
          // Create a new server socket that listens at port 6999
