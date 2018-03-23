@@ -1,24 +1,26 @@
-import java.io.*;
-import java.net.*;
-public class ServerDemo {
-   public static void main(String args[]) {
-      try {
-         // Create a new server socket that listens at port 6999
-         ServerSocket ss = new ServerSocket(6999);
-         System.out.println("Server is lisenting ... ");
-         Socket skt = ss.accept();//wait for connection from client on port 6999
-         InputStream is = skt.getInputStream();
-         ObjectInputStream ois = new ObjectInputStream(is);
-         String msg = (String)ois.readObject(); // recieve message from client
-         System.out.println("Server recieved message : " + msg);
-         System.out.println("Server is exiting ... ");
-         /* close open streams and socket */
-         ois.close();
-         is.close();
-         skt.close();
-         ss.close();
-      } catch(Exception e) {
-         System.out.println(e);
-      }
-   }
-}
+import java.net.*;  
+import java.io.*;  
+class ServerDemo
+{  
+    public static void main(String args[])throws Exception
+    {  
+    ServerSocket ss=new ServerSocket(3333);  
+    Socket s=ss.accept();  
+    DataInputStream din=new DataInputStream(s.getInputStream());  
+    DataOutputStream dout=new DataOutputStream(s.getOutputStream());  
+    BufferedReader br=new BufferedReader(new InputStreamReader(System.in));  
+      
+    String str="",str2="";  
+    while(!str.equals("stop")){  
+    str=din.readUTF();  
+    System.out.println("client says: "+str);  
+    str2=br.readLine();  
+    dout.writeUTF(str2);  
+    dout.flush();  
+    }  
+    din.close();  
+    s.close();  
+    ss.close();  
+    }
+    }  
+
